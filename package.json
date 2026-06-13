@@ -1,0 +1,12 @@
+{
+  "name": "wtr-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test:core": "npm run test -w packages/core"
+  }
+}

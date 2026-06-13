@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  --bg-main: #06090F;
+  --bg-card: #0F131E;
+  --border-color: rgba(255, 255, 255, 0.08);
+  
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  
+  --primary: #4F46E5;
+  --primary-glow: rgba(79, 70, 229, 0.25);
+  
+  --success: #10B981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  
+  --warning: #F59E0B;
+  --warning-bg: rgba(245, 158, 11, 0.15);
+  
+  --danger: #EF4444;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  
+  --info: #3B82F6;
+  --info-bg: rgba(59, 130, 246, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  background: #090C15;
+  border-inline: 1px solid var(--border-color);
+  position: relative;
+}
+
+/* Mobile Header */
+.app-header {
+  padding: 16px 20px;
+  background: rgba(10, 15, 26, 0.9);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFF 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sync-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.sync-badge.online {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.sync-badge.offline {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* Scrollable main container */
+.mobile-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  padding-bottom: 90px; /* space for navbar */
+}
+
+/* Active status panel */
+.status-indicator-banner {
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status-indicator-banner.waiting {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-indicator-banner.active {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.9; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.9; }
+}
+
+/* Mobile cards */
+.job-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.job-card:active {
+  background: rgba(255, 255, 255, 0.02);
+  transform: scale(0.98);
+}
+
+.job-card.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.15);
+}
+
+.job-ref {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 4px;
+}
+
+.job-customer {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* Giant touch buttons */
+.giant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.giant-btn:active {
+  transform: scale(0.96);
+}
+
+.btn-start {
+  background: var(--primary);
+  color: #FFF;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.btn-arrive {
+  background: var(--success);
+  color: #FFF;
+}
+
+.btn-depart {
+  background: var(--danger);
+  color: #FFF;
+}
+
+/* Bottom Nav bar */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: rgba(10, 15, 26, 0.95);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.nav-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: color 0.2s ease;
+}
+
+.nav-tab.active {
+  color: #FFF;
+}
+
+.nav-tab-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Auth components for Driver */
+.mobile-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.mobile-auth-card {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px 24px;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: #FFF;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.alert-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.alert-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}

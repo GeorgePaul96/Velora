@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "std/": "https://deno.land/std@0.192.0/",
+    "supabase": "https://esm.sh/@supabase/supabase-js@2.24.0",
+    "pdf-lib": "https://esm.sh/pdf-lib@1.17.1",
+    "imagescript": "https://deno.land/x/imagescript@1.2.15/mod.ts",
+    "@wtr/core": "../../packages/core/src/index.ts"
+  }
+}
