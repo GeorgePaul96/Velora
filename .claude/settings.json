@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(supabase --version)",
+      "Bash(supabase projects *)"
+    ],
+    "deny": [
+      "Read(./node_modules/**)",
+      "Read(./apps/*/node_modules/**)",
+      "Read(./packages/*/node_modules/**)",
+      "Read(./apps/*/dist/**)",
+      "Read(./dist/**)",
+      "Read(**/*.tsbuildinfo)",
+      "Read(./package-lock.json)",
+      "Read(**/package-lock.json)",
+      "Read(**/*.png)",
+      "Read(**/*.exe)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}
