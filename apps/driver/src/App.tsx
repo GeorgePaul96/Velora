@@ -44,9 +44,16 @@ export default function App() {
   const lastInsideTimestampRef = useRef<string | null>(null);
   const onSiteTimerIntervalRef = useRef<number | null>(null);
 
-  // Initialize Supabase Client
+  // Initialize Supabase Client ONCE and reuse it. Creating a new client per call spawns
+  // multiple GoTrueClient instances that cross-notify via storage, which re-fires
+  // onAuthStateChange in a loop (causes screen flicker). Credentials only change via
+  // saveCredentials(), which does a full page reload, so a single instance is safe.
+  const clientRef = useRef<any>(null);
   const getSupabaseClient = () => {
-    return createClient(supabaseUrl, supabaseAnonKey);
+    if (!clientRef.current) {
+      clientRef.current = createClient(supabaseUrl, supabaseAnonKey);
+    }
+    return clientRef.current;
   };
 
   useEffect(() => {
@@ -57,13 +64,13 @@ export default function App() {
     const client = getSupabaseClient();
     setIsConnected(true);
 
-    client.auth.getSession().then(({ data: { session } }) => {
+    client.auth.getSession().then(({ data: { session } }: any) => {
       setSession(session);
       if (session) loadAssignedJobs(session.user.id);
       setIsLoading(false);
     });
 
-    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = client.auth.onAuthStateChange((_event: any, session: any) => {
       setSession(session);
       if (session) loadAssignedJobs(session.user.id);
     });
